@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Serve folder for web development</title>
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div id="mainwrap">
+
+<h1 id="maintitle">Serve folder</h1>
+<p>Serve a local folder of files in your browser for easy testing without having to run a server.</p>
+
+<noscript><strong>This page requires JavaScript to work, but it looks like JavaScript is disabled. Please enable JavaScript and try again.</strong></noscript>
+
+<button id="pickfolder" hidden>Pick folder</button>
+<br>
+<button id="uselastfolder" hidden>Use last folder</button>
+<input type="file" webkitdirectory id="inputfolder" hidden>
+
+<div id="hostinfo">
+	<h2 id="hosttitle">Files in folder '<span id="foldername"></span>' are now hosted at:</h2>
+	<a href="" id="hostlink" target="_blank"></a>
+	<p>The link only works locally as long as this page is left open.</p>
+</div>
+
+<details>
+<summary>More information</summary>
+<h3>What is this?</h3>
+<p>This page lets you host a local folder with web development files, such as HTML, JavaScript and CSS, directly in your browser. It works using Service Workers: everything is served from your local system only, nothing is uploaded to a server, and your files are not shared with anybody else.</p>
+
+<h3>Why is it useful?</h3>
+<p>In some enviroments running a HTTP server may be difficult or inconvenient, for example if you're on a system with limited permissions. Alternatively it's another quick way to quickly test some web development files.</p>
+
+<h3>How does it work?</h3>
+<p>Click the big button at the top and choose a folder. Once chosen and any permission prompt approved, a link will appear. Click the link and it will open a new tab and load index.html if a file with that name exists, otherwise it will show the contents of the folder for browsing. This is particularly useful with HTML files, which are also able to load all sub-resources like they can on a normal web server, but this does not actually involve a HTTP server (it works using Service Workers). Note the provided link will only work so long as this page remains open &mdash; as soon as you close the page the link will stop working.</p>
+
+<p>You can also open this tab multiple times and host different folders simultaneously. Additional tabs will host at a different URL for accessing different folders.</p>
+
+<h3>Is my data kept private?</h3>
+<p>Yes. Your chosen files will not leave your computer. The files will not be accessible by anyone else, the provided link only works for you, and nothing is transmitted over a network while loading it.</p>
+
+<h3>Who made this?</h3>
+<p>Hi, I'm <a href="https://twitter.com/ashleygullen">@AshleyGullen</a>, founder of Scirra and lead developer on <a href="https://www.construct.net/">Construct</a>.</p>
+
+<p><em>v1.1 &mdash; last updated December 8th 2021 &mdash; <a href="https://github.com/AshleyScirra/servefolder.dev">View code on GitHub</a></em></p>
+</details>
+
+<script src="idb-keyval.js" defer></script>
+<script src="index.js" type="module"></script>
+</div>
+
+</body>
+</html>

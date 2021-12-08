@@ -1,0 +1,50 @@
+
+body {
+	font-family: sans-serif;
+	background-color: #f0f0f0;
+}
+
+details {
+	margin-top: 2em;
+}
+
+summary {
+	cursor: pointer;
+	user-select: none;
+}
+
+#mainwrap {
+	max-width: 40em;
+	margin: 1em auto 4em auto;
+	padding: 1em;
+	text-align: center;
+	background-color: white;
+	box-shadow: 0px 0px 1em #888;
+}
+
+#maintitle {
+	margin-top: 0;
+}
+
+#pickfolder {
+	width: 10em;
+	height: 3em;
+	font-size: 1.5em;
+}
+
+#uselastfolder {
+	margin-top: 1em;
+}
+
+#inputfolder {
+	font-size: 1.5em;
+}
+
+#hostinfo {
+	display: none;
+}
+
+#hostlink {
+	font-size: 1.5em;
+	display: block;
+}
