@@ -6,11 +6,11 @@
 	"icons": [{
 		"src": "favicon.png",
 		"type": "image/png",
-		"sizes": "256x256"
+		"sizes": "512x512"
 	}, {
 		"src": "favicon.svg",
 		"type": "image/svg+xml",
-		"sizes": "257x257"
+		"sizes": "513x513"
 	}],
 	"scope": "/",
 	"start_url": "/",
