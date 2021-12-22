@@ -1,0 +1,20 @@
+{
+	"lang": "en",
+	"dir": "ltr",
+	"name": "Serve folder",
+	"short_name": "Serve folder",
+	"icons": [{
+		"src": "favicon.png",
+		"type": "image/png",
+		"sizes": "256x256"
+	}, {
+		"src": "favicon.svg",
+		"type": "image/svg+xml",
+		"sizes": "257x257"
+	}],
+	"scope": "/",
+	"start_url": "/",
+	"id": "/",
+	"display": "standalone",
+	"background_color": "#f0f0f0"
+}
