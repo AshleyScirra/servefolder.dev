@@ -59,3 +59,7 @@ h3 + p {
 	font-size: 1.5em;
 	display: block;
 }
+
+.alignleft {
+	text-align: left;
+}
