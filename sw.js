@@ -1,6 +1,6 @@
 
-// Storage methods using idb-keyval
-importScripts("idb-keyval.js");
+// Storage methods using idb-keyval, and basic offline support in offline.js
+importScripts("idb-keyval.js", "offline.js");
 
 const idbkvStore = IDBKeyVal.createStore("service-worker-db", "service-worker-store");
 
@@ -34,8 +34,12 @@ self.addEventListener("install", e =>
 {
 	console.log("[SW] install");
 	
-	// Skip waiting to ensure files can be served on first run
-	e.waitUntil(self.skipWaiting());
+	// Skip waiting to ensure files can be served on first run. Also save all files to
+	// the offline cache for offline support on install.
+	e.waitUntil(Promise.all([
+		self.skipWaiting(),
+		SaveFilesToOfflineCache()
+	]));
 });
 
 self.addEventListener("activate", event =>
@@ -111,7 +115,11 @@ self.addEventListener("fetch", e =>
 	const scopeRelativeUrl = e.request.url.substr(swScope.length);
 	const scopeUrlMatch = /^host\d*\//.exec(scopeRelativeUrl);
 	if (!scopeUrlMatch)
-		return;		// not part of a host URL
+	{
+		// Not part of a host URL. Try respond using offline cache if possible.
+		e.respondWith(OfflineFetch(e.request));
+		return;
+	}
 	
 	// Strip host name from URL and get the URL within the host
 	const hostUrl = scopeUrlMatch[0];
