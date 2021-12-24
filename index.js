@@ -10,6 +10,14 @@ let hasIndexHtml = false;		// True if root directory has index.html
 const pickFolderButton = document.getElementById("pickfolder");
 const inputFolderElem = document.getElementById("inputfolder");
 
+// Register a hit for server-side visitor counting. The offline support means that a subsequent visit
+// will load fully client-side without contacting the server at all. Fetching hit.html, which is not cached,
+// with a cache-busting request will hit the server and so log a visit even with a fully cached load, so long
+// as the internet connection is available. The result is ignored and the request can fail with no consequence
+// other than the visit not being logged.
+fetch("hit.html",  {cache: "no-store" /* bypass cache */ })
+.catch(() => {});					// noop on error
+
 // Use File System API if available
 if (window.showDirectoryPicker)
 {
