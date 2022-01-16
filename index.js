@@ -186,9 +186,10 @@ async function HandleFetch(e)
 	try {
 		
 		let relativeUrl = decodeURIComponent(e.data.url);
+		const urlEndsWithSlash = relativeUrl.endsWith("/");
 		
 		// Strip trailing / if any, so the last token is the folder/file name
-		if (relativeUrl.endsWith("/"))
+		if (urlEndsWithSlash)
 			relativeUrl = relativeUrl.substr(0, relativeUrl.length - 1);
 		
 		// Strip query string if any, since it will cause file name lookups to fail
@@ -219,6 +220,12 @@ async function HandleFetch(e)
 		{
 			try {
 				const listHandle = await curFolderHandle.getDirectoryHandle(lastName);
+
+				// Require that directory listing URLs end with a slash, for relative URLs in the
+				// directory listing to resolve correctly. Without a slash, it will return 404.
+				if (listHandle && !urlEndsWithSlash)
+					throw new Error("expected trailing slash");
+				
 				file = await GenerateDirectoryListing(listHandle, relativeUrl);
 			}
 			catch
@@ -262,7 +269,7 @@ async function GenerateDirectoryListing(dirHandle, relativeUrl)
 	{
 		// Display folders as "name/", otherwise just use name
 		const suffix = (handle.kind === "directory" ? "/" : "");
-		str += `<li><a href="${relativeUrl}${name}">${name}${suffix}</a></li>`;
+		str += `<li><a href="${name}${suffix}">${name}${suffix}</a></li>`;
 	}
 	
 	str += `</ul></body></html>`;
