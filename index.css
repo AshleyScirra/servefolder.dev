@@ -37,6 +37,11 @@ h3 + p {
 	margin-top: 0;
 }
 
+#translations {
+	text-align: center;
+	font-size: 0.45em;
+}
+
 #pickfolder {
 	width: 10em;
 	height: 3em;
