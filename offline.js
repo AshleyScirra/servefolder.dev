@@ -1,6 +1,6 @@
 
 // Simple offline support via Service Worker
-const OFFLINE_CACHE_NAME = "servefolder-dev-offline-3";
+const OFFLINE_CACHE_NAME = "servefolder-dev-offline-4";
 
 const FILE_LIST = [
 	"appmanifest.json",
