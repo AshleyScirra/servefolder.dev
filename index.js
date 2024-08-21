@@ -192,10 +192,14 @@ async function HandleFetch(e)
 		if (urlEndsWithSlash)
 			relativeUrl = relativeUrl.substr(0, relativeUrl.length - 1);
 		
-		// Strip query string if any, since it will cause file name lookups to fail
+		// Strip query string and hash if any, since it will cause file name lookups to fail
 		const q = relativeUrl.indexOf("?");
 		if (q !== -1)
 			relativeUrl = relativeUrl.substr(0, q);
+		
+		const h = relativeUrl.indexOf("#");
+		if (h !== -1)
+			relativeUrl = relativeUrl.substr(0, h);
 		
 		// Look up through any subfolders in path.
 		// Note this uses File System Access API methods, either the real kind or a mini
